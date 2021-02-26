@@ -18,9 +18,9 @@
             #include "UnityCG.cginc"
 
             //Parameters
-            #define MAX_DISTANCE 100;
-            #define MAX_STEPS 100;
-            #define COLLISION_DISTANCE 1e-3;
+            float MAX_DISTANCE = 100;
+            float MAX_STEPS = 100;
+            float COLLISION_DISTANCE = 1e-3;
             struct appdata
             {
                 float4 vertex : POSITION;
@@ -57,8 +57,8 @@
                 float distance_scene;
                 for(int i = 0; i < MAX_STEPS; ++i)
                 {
-                    //float3 position = ray_origin + distance_origin * ray_direction;
-                    //distance_scene = get_distance(position);
+                    float3 position = ray_origin + distance_origin * ray_direction;
+                    distance_scene = get_distance(position);
                     distance_origin += distance_scene;
                     if(distance_scene < COLLISION_DISTANCE || distance_origin > MAX_DISTANCE) {break;}
                 }
@@ -76,7 +76,7 @@
                 if(distance < MAX_DISTANCE){
                     col.r = 1;
                 }
-                //col.rgb = ray_direction;
+                col.rgb = ray_direction;
                 return col;
             }
             ENDCG

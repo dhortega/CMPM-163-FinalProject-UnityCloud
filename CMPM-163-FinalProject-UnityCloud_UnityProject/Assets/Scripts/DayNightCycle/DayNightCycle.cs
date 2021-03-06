@@ -55,6 +55,9 @@ public class DayNightCycle : MonoBehaviour
     }
     public bool pause = false; //pause the day and night cycle without pausing the game
 
+    [SerializeField]
+    private AnimationCurve timeCurve;
+    private float timeCurveNormalization;
 
     [Header("Sun Light")]
     [SerializeField]
@@ -71,7 +74,20 @@ public class DayNightCycle : MonoBehaviour
     private Gradient sunColor;
 
 
+    [Header("Seasonal Variables")]
+    [SerializeField]
+    private Transform sunSeasonalRotation;
+    [SerializeField]
+    [Range(-45f, 45f)]
+    private float maxSeasonalTilt;
 
+    [Header("Modules")]
+    private List<DN_Module_Base> moduleList = new List<DN_Module_Base>();
+
+    private void Start()
+    {
+        NormalizeTimeCurve();
+    }
 
     private void Update()
     {
@@ -84,10 +100,30 @@ public class DayNightCycle : MonoBehaviour
         AdjustSunRotation();
         SunIntensity();
         AdjustSunColor();
+        UpdateModules(); //will update modules each frame
     }
     private void UpdateTimeScale()
     {
         _timeScale = 24 / (_targetDayLength / 60);
+
+        _timeScale *= timeCurve.Evaluate(timeOfDay); //changes time scale based on time curve
+        _timeScale /= timeCurveNormalization; //keeps day length at target value in inspector
+    }
+
+    private void NormalizeTimeCurve()
+    {
+        float stepSize = 0.01f;
+        int numberSteps = Mathf.FloorToInt(1f / stepSize);
+        float curveTotal = 0;
+
+        for(int i = 0; i < numberSteps; i++)
+        {
+            curveTotal += timeCurve.Evaluate(i * stepSize);
+
+        }
+
+        timeCurveNormalization = curveTotal / numberSteps;
+
     }
 
     private void UpdateTime()
@@ -111,6 +147,9 @@ public class DayNightCycle : MonoBehaviour
     {
         float sunAngle = timeOfDay * 360f;
         dailyRotation.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, sunAngle));
+
+        float seasonalAngle = -maxSeasonalTilt * Mathf.Cos(dayNumber / _yearLength * 2f * Mathf.PI);
+        sunSeasonalRotation.localRotation = Quaternion.Euler(new Vector3(seasonalAngle, 0f, 0f));
     }
 
     private void SunIntensity()
@@ -126,5 +165,22 @@ public class DayNightCycle : MonoBehaviour
         sun.color = sunColor.Evaluate(intensity);
     }
 
+    public void AddModule(DN_Module_Base module)
+    {
+        moduleList.Add(module);
+    }
+
+    public void RemoveModule(DN_Module_Base module)
+    {
+        moduleList.Remove(module);
+    }
+
+    private void UpdateModules()
+    {
+        foreach(DN_Module_Base module in moduleList)
+        {
+            module.UpdateModule(intensity);
+        }
+    }
 
 }

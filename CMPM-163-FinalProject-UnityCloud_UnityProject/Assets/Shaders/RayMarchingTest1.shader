@@ -65,14 +65,15 @@
             {
                 //float distance = pythaDistance(position);
                 float distanceSphere = length(position) - 0.5; //Sphere
+
                 float distanceTorus = length(float2(length(position.xz) - .5, position.y)) - .1; //Torus  
                 
-                vec3 d = abs(position) - vec3(1);
+                float3 d = abs(position) - float3(1, 1, 1);
                 float insideDistance = min(max(d.x, max(d.y, d.z)), 0);
                 float outsideDistance = length(max(d, 0));
-                float distanceBox = insideDistance + outsideDistance; 
-                //return max(distanceSphere, distanceTorus * -1);
-                return distanceBox;
+                float distanceBox = insideDistance + outsideDistance; // Cube
+
+                return min(distanceSphere, distanceBox * -1);
             }
             float Raymarch(float3 ray_origin, float3 ray_direction)
             {

@@ -104,14 +104,17 @@
                 //Get the distance
                 float distance = Raymarch(ray_origin, ray_direction);
                 float4 col = 0;
+                fixed4 tex = tex2D(_MainTex, i.uv);
+                float m = dot(uv, uv);
                 //Display Raymarch
                 if(distance < MAX_DISTANCE){
                     float3 position = ray_origin + ray_direction * distance;
                     float3 normal = GetNormal(position);
-                    col.rgb = normal;
+                    col.rgb = normal * tex;
                 } else {
                     discard;
                 }
+                //col += lerp(col, tex, smoothstep(0.1, 0.2, m));
                 return col;
             }
             ENDCG

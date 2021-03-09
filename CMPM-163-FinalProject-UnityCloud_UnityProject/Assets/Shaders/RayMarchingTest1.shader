@@ -64,7 +64,7 @@
             float get_distance(float3 position)
             {
                 //float distance = pythaDistance(position);
-                float distanceSphere = length(position) - 0.5; //Sphere
+                    float distanceSphere = length(position) - 0.5; //Sphere
 
                 float distanceTorus = length(float2(length(position.xz) - .5, position.y)) - .1; //Torus  
                 

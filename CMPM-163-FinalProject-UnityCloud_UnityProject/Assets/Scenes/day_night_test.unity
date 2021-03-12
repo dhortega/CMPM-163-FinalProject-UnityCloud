@@ -414,7 +414,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1200220364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 5.6, y: 6.2, z: -52.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -431,6 +431,7 @@ GameObject:
   - component: {fileID: 1514722127}
   - component: {fileID: 1514722126}
   - component: {fileID: 1514722128}
+  - component: {fileID: 1514722129}
   m_Layer: 0
   m_Name: Day Night Cycle
   m_TagString: Untagged
@@ -591,6 +592,76 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   baseIntensity: 0.35
+--- !u!114 &1514722129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514722125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd498dde4511744cb739e8857a0cd8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skyColor:
+    serializedVersion: 2
+    key0: {r: 0.20784314, g: 0.23529412, b: 0.26666668, a: 1}
+    key1: {r: 0.30980393, g: 0.36078432, b: 0.41960785, a: 1}
+    key2: {r: 0.30980393, g: 0.36078432, b: 0.41960785, a: 0}
+    key3: {r: 0.32156864, g: 0.49019608, b: 0.6313726, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 5737
+    ctime1: 10693
+    ctime2: 14594
+    ctime3: 19000
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  horizonColor:
+    serializedVersion: 2
+    key0: {r: 0.08235294, g: 0.19607843, b: 0.24313726, a: 1}
+    key1: {r: 0.42352942, g: 0.43529412, b: 0.42352942, a: 1}
+    key2: {r: 0.4392157, g: 0.44313726, b: 0.4392157, a: 0}
+    key3: {r: 0.5137255, g: 0.5568628, b: 0.92941177, a: 0}
+    key4: {r: 0.75686276, g: 0.8901961, b: 0.99607843, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 11703
+    ctime1: 14364
+    ctime2: 16705
+    ctime3: 20698
+    ctime4: 24966
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
 --- !u!1 &1705537501
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,7 +836,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 02c91c11911da1541929f0e52d575e13, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -803,7 +874,7 @@ Transform:
   m_GameObject: {fileID: 2003674766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 1, z: 50}
+  m_LocalScale: {x: 1000, y: 1, z: 1000}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3

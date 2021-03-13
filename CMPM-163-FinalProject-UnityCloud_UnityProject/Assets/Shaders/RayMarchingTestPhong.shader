@@ -1,9 +1,9 @@
-﻿Shader "Unlit/RayMarchingTestPhong"
+Shader "Unlit/RayMarchingTestPhong"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _BlendStrength("Blend strength", Range(0,1)) = 0
+        _BlendStrength("Blend strength", Range(0.07,.1)) = 0
     }
     SubShader
     {
@@ -74,14 +74,15 @@
             float get_distance(float3 position)
             {
                 //float distance = pythaDistance(position);
-                float distanceSphere = length(position) - 0.5 / ObjectScale(); //Sphere
-                float distanceSphere2 = length(position + 0.8 / ObjectScale()) - 0.5 / ObjectScale(); //Sphere
+                float distanceSphere = (length(position) - 0.5 / ObjectScale()); //Sphere
+                float distanceSphere2 = length(position + 0.8 / ObjectScale()) - 0.5 / ObjectScale() * 2; //Sphere
                 float distanceSphere3 = length(position + 1.6 / ObjectScale()) - 0.5 / ObjectScale(); //Sphere
-                float distanceSphere4 = length(position + 2.4 / ObjectScale()) - 0.5 / ObjectScale(); //Sphere
+                float distanceSphere4 = length(position / ObjectScale()) - 0.5 / ObjectScale(); //Sphere
                 //float distanceSphere2 = length(float2(length(position.xz) - .5, position.y)) - .1; //Torus   
 
-                //Change _BlendStrength form 0.7 to 1 with noise
+                //Change _BlendStrength form 0.07 to 0. 1 with noise
                 float output = min(smoothMin(distanceSphere, distanceSphere2, _BlendStrength), smoothMin(distanceSphere3, distanceSphere2, _BlendStrength));
+                output = min(output, smoothMin(distanceSphere, distanceSphere3, _BlendStrength));
                 //output = max(output,0);
                 return output;
                 //return distanceSphere;

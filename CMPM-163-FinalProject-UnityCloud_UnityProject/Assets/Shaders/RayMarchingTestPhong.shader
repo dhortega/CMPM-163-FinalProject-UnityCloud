@@ -74,18 +74,44 @@ Shader "Unlit/RayMarchingTestPhong"
             float get_distance(float3 position)
             {
                 //float distance = pythaDistance(position);
-                float distanceSphere = (length(position) - 0.5 / ObjectScale()); //Sphere
-                float distanceSphere2 = length(position + 0.8 / ObjectScale()) - 0.5 / ObjectScale() * 2; //Sphere
-                float distanceSphere3 = length(position + 1.6 / ObjectScale()) - 0.5 / ObjectScale(); //Sphere
-                float distanceSphere4 = length(position / ObjectScale()) - 0.5 / ObjectScale(); //Sphere
+                float distanceSphere1 = length(float3(length(position.x + 0.5 / ObjectScale().x),
+                        position.y + 0.5 / ObjectScale().y,
+                        position.z)
+                    ) - 1 / ObjectScale(); //Sphere
+                float distanceSphere2 = length(float3(length(position.x - 0.5 / ObjectScale().x),
+                        position.y + 0.5 / ObjectScale().y,
+                        position.z)
+                    ) - 1 / ObjectScale(); //Sphere
+                float distanceSphere3 = length(float3(length(position.x - 2.0 / ObjectScale().x),
+                        position.y + 0.5 / ObjectScale().y,
+                        position.z)
+                    ) - 0.5 / ObjectScale(); //Sphere
+                float distanceSphere4 = length(float3(length(position.x + 2.5 / ObjectScale().x),
+                        position.y + 0.5 / ObjectScale().y,
+                        position.z)
+                    ) - 1 / ObjectScale(); //Sphere
+                float distanceSphere5 = length(float3(length(position.x - 1.0 / ObjectScale().x),
+                        position.y - 0.5 / ObjectScale().y,
+                        position.z)
+                    ) - 0.5 / ObjectScale(); //Sphere
+                float distanceSphere6 = length(float3(length(position.x + 1.5 / ObjectScale().x),
+                        position.y - 0.5 / ObjectScale().y,
+                        position.z)
+                    ) - 1 / ObjectScale(); //Sphere
+                float distanceSphere7 = length(float3(length(position.x + 0.0 / ObjectScale().x),
+                        position.y - 0.5 / ObjectScale().y,
+                        position.z)
+                    ) - 0.5 / ObjectScale() * 1.5; //Sphere
                 //float distanceSphere2 = length(float2(length(position.xz) - .5, position.y)) - .1; //Torus   
 
                 //Change _BlendStrength form 0.07 to 0. 1 with noise
-                float output = min(smoothMin(distanceSphere, distanceSphere2, _BlendStrength), smoothMin(distanceSphere3, distanceSphere2, _BlendStrength));
-                output = min(output, smoothMin(distanceSphere, distanceSphere3, _BlendStrength));
-                //output = max(output,0);
+                float output = smoothMin(distanceSphere1, distanceSphere2, _BlendStrength);
+                output = smoothMin(output, distanceSphere3, _BlendStrength);
+                output = smoothMin(output, distanceSphere4, _BlendStrength);
+                output = smoothMin(output, distanceSphere5, _BlendStrength);
+                output = smoothMin(output, distanceSphere6, _BlendStrength);
+                output = smoothMin(output, distanceSphere7, _BlendStrength);
                 return output;
-                //return distanceSphere;
             }
             float Raymarch(float3 ray_origin, float3 ray_direction)
             {

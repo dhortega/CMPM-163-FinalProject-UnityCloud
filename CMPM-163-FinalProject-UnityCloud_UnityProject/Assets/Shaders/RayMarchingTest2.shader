@@ -69,8 +69,8 @@
                 //float distance = pythaDistance(position);
                 float distanceSphere = length(position) - 0.5; //Sphere
                 float distanceTorus = length(float2(length(position.xz) - .5, position.y)) - .1; //Torus   
-                return min(distanceSphere, distanceTorus);
-                //return max(smoothMin(distanceSphere, distanceTorus, _BlendStrength), smoothMin(distanceSphere, distanceTorus, _BlendStrength));
+                //return min(distanceSphere, distanceTorus);
+                return max(smoothMin(distanceSphere, distanceTorus, _BlendStrength), smoothMin(distanceSphere, distanceTorus, _BlendStrength));
             }
             float Raymarch(float3 ray_origin, float3 ray_direction)
             {

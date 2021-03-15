@@ -3,7 +3,9 @@ Shader "Unlit/RayMarchingTestPhong"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _BlendStrength("Blend strength", Range(0.04,.1)) = 0
+        _BlendStrength("Blend strength", Range(0.04,.1)) = 0.055
+        _Bounce("Bounce", Range(0.1,5)) = 0
+        _TimeDelay("Time Delay", range(0.1,10)) = 0
     }
     SubShader
     {
@@ -42,6 +44,8 @@ Shader "Unlit/RayMarchingTestPhong"
             float4 _MainTex_ST;
             // Blend strength
             float _BlendStrength;
+            float _Bounce;
+            float _TimeDelay;
 
             v2f vert (appdata v)
             {
@@ -75,31 +79,31 @@ Shader "Unlit/RayMarchingTestPhong"
             {
                 //float distance = pythaDistance(position);
                 float distanceSphere1 = length(float3(length(position.x + 1.0 / ObjectScale().x),
-                        position.y + 0.4 / ObjectScale().y,
+                        position.y + 0.4 / ObjectScale().y + (_Bounce * sin(_Time + _TimeDelay).y) / ObjectScale().y,
                         position.z)
                     ) - 1.1 / ObjectScale(); //Sphere
                 float distanceSphere2 = length(float3(length(position.x - 0.5 / ObjectScale().x),
-                        position.y + 0.5 / ObjectScale().y,
+                        position.y + 0.5 / ObjectScale().y + (_Bounce * sin(_Time + _TimeDelay).y) / ObjectScale().y,
                         position.z)
                     ) - 1 / ObjectScale(); //Sphere
                 float distanceSphere3 = length(float3(length(position.x - 1.8 / ObjectScale().x),
-                        position.y + 0.5 / ObjectScale().y,
+                        position.y + 0.5 / ObjectScale().y + (_Bounce * sin(_Time + _TimeDelay).y) / ObjectScale().y,
                         position.z)
                     ) - 0.6 / ObjectScale(); //Sphere
                 float distanceSphere4 = length(float3(length(position.x + 2.2 / ObjectScale().x),
-                        position.y + 0.5 / ObjectScale().y,
+                        position.y + 0.5 / ObjectScale().y + (_Bounce * sin(_Time + _TimeDelay).y) / ObjectScale().y,
                         position.z)
                     ) - 1 / ObjectScale(); //Sphere
                 float distanceSphere5 = length(float3(length(position.x - 1.0 / ObjectScale().x),
-                        position.y - 0.5  / ObjectScale().y,
+                        position.y - 0.5  / ObjectScale().y + (_Bounce * sin(_Time + _TimeDelay).y) / ObjectScale().y,
                         position.z)
                     ) - .6 / ObjectScale(); //Sphere
                 float distanceSphere6 = length(float3(length(position.x + 1.5 / ObjectScale().x),
-                        position.y - 0.75 / ObjectScale().y,
+                        position.y - 0.75 / ObjectScale().y + (_Bounce * sin(_Time + _TimeDelay).y) / ObjectScale().y,
                         position.z)
                     ) - .85 / ObjectScale(); //Sphere
                 float distanceSphere7 = length(float3(length(position.x + 0.2 / ObjectScale().x),
-                        position.y - 0.75 / ObjectScale().y,
+                        position.y - 0.75 / ObjectScale().y + (_Bounce * sin(_Time + _TimeDelay).y) / ObjectScale().y,
                         position.z)
                     ) - 0.45 / ObjectScale() * 1.5; //Sphere
                 //float distanceSphere2 = length(float2(length(position.xz) - .5, position.y)) - .1; //Torus   

@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 121258950}
   - component: {fileID: 121258949}
   m_Layer: 0
-  m_Name: CubeTest3 (1)
+  m_Name: CloudCube7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,7 +202,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8b76e3506e8fe1b4a9536bdc950d8af1, type: 2}
+  - {fileID: 2100000, guid: 1a3e7599c9b73b844815db1fd25a5101, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -239,11 +239,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121258948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.54, y: 4.18, z: -4.629}
+  m_LocalPosition: {x: 19.1, y: 9.3, z: -4.629}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &217725561
 GameObject:
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 547244847}
   - component: {fileID: 547244846}
   m_Layer: 0
-  m_Name: CubeTest3 (2)
+  m_Name: CloudCube2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,7 +387,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8b76e3506e8fe1b4a9536bdc950d8af1, type: 2}
+  - {fileID: 2100000, guid: 3e9dde57cb453134a9e07168fae8832b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -428,7 +428,50 @@ Transform:
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &932695439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 932695441}
+  - component: {fileID: 932695440}
+  m_Layer: 0
+  m_Name: ShaderDebugger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &932695440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932695439}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d43484c621124241b2e13e25ab83730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &932695441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932695439}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -23.5, y: 10.110001, z: -4.6289997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1200220364
 GameObject:
@@ -526,7 +569,7 @@ GameObject:
   - component: {fileID: 1220323672}
   - component: {fileID: 1220323671}
   m_Layer: 0
-  m_Name: CubeTest3 (4)
+  m_Name: CloudCube6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -563,7 +606,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8b76e3506e8fe1b4a9536bdc950d8af1, type: 2}
+  - {fileID: 2100000, guid: 9bd3be992cf01df468df283176b32ff7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -600,11 +643,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220323670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.7, y: 14.15, z: -4.629}
+  m_LocalPosition: {x: 8.7, y: 14.9, z: -4.629}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1514722125
 GameObject:
@@ -861,7 +904,7 @@ GameObject:
   - component: {fileID: 1627186771}
   - component: {fileID: 1627186770}
   m_Layer: 0
-  m_Name: CubeTest3 (6)
+  m_Name: CloudCube3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -898,7 +941,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8b76e3506e8fe1b4a9536bdc950d8af1, type: 2}
+  - {fileID: 2100000, guid: 6494111a9109e04459dbd67562306211, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -935,11 +978,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1627186769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.85, y: 6.4, z: -4.629}
+  m_LocalPosition: {x: -10.4, y: 8.4, z: -4.629}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1685240123
 GameObject:
@@ -954,7 +997,7 @@ GameObject:
   - component: {fileID: 1685240125}
   - component: {fileID: 1685240124}
   m_Layer: 0
-  m_Name: CubeTest3 (5)
+  m_Name: CloudCube4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -991,7 +1034,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8b76e3506e8fe1b4a9536bdc950d8af1, type: 2}
+  - {fileID: 2100000, guid: d50b1ac58d097744ba54270abe5b771a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1028,11 +1071,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1685240123}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.97, y: 17.6, z: -4.629}
+  m_LocalPosition: {x: -2.97, y: 14.6, z: -4.629}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1705537501
 GameObject:
@@ -1079,7 +1122,7 @@ GameObject:
   - component: {fileID: 1783886129}
   - component: {fileID: 1783886128}
   m_Layer: 0
-  m_Name: CubeTest3 (3)
+  m_Name: CloudCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1116,7 +1159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8b76e3506e8fe1b4a9536bdc950d8af1, type: 2}
+  - {fileID: 2100000, guid: bdd48c55c64b61242afe3322597aa2ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1153,11 +1196,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783886127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.73, y: 10.11, z: -4.629}
+  m_LocalPosition: {x: -23.5, y: 10.11, z: -4.629}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1900750563
 GameObject:
@@ -1357,7 +1400,7 @@ GameObject:
   - component: {fileID: 2086105303}
   - component: {fileID: 2086105302}
   m_Layer: 0
-  m_Name: CubeTest3
+  m_Name: CloudCube5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1431,9 +1474,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086105301}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: 10.11, z: -4.629}
+  m_LocalPosition: {x: 3.6, y: 10.11, z: -4.629}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

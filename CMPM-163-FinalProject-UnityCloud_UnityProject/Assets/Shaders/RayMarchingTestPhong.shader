@@ -3,8 +3,16 @@ Shader "Unlit/RayMarchingTestPhong"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Alpha("Alpha", Range(0, 0.7)) = 0
         _BlendStrength("Blend strength", Range(0.04,.1)) = 0.055
         _Bounce("Bounce", Range(0.1,5)) = 0
+        _BounceA("BounceA", Range(0.1,5)) = 0
+        _BounceB("BounceB", Range(0.1,5)) = 0
+        _BounceC("BounceC", Range(0.1,5)) = 0
+        _BounceD("BounceD", Range(0.1,5)) = 0
+        _BounceE("BounceE", Range(0.1,5)) = 0
+        _BounceF("BounceF", Range(0.1,5)) = 0
+        _BounceG("BounceG", Range(0.1,5)) = 0
         _TimeDelay("Time Delay", range(0.1,10)) = 0
     }
     SubShader
@@ -15,10 +23,14 @@ Shader "Unlit/RayMarchingTestPhong"
         Pass
         {
             CGPROGRAM
+            #pragma target 5.0
             #pragma vertex vert
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+
+            // Debugging tool
+            RWStructuredBuffer<float4> buffer : register(u1);
 
             //Parameters
             float4 _LightColor0; //Light color, declared in UnityCG
@@ -42,9 +54,31 @@ Shader "Unlit/RayMarchingTestPhong"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+
+            // Flag for determining isDay
+            // Declaring isDay to 1. This will be multiplied by -1 to be represent
+            // notDay initially
+            //uniform float isDay = 1;
+            //uniform float _notDay = -1;
+            //uniform float _currentDay;
+
+            // Alpha
+            float _Alpha;
+            float isDay;
+            uniform float isTriggerable = 1;
+
             // Blend strength
             float _BlendStrength;
             float _Bounce;
+            float _BounceA;
+            float _BounceB;
+            float _BounceC;
+            float _BounceD;
+            float _BounceE;
+            float _BounceF;
+            float _BounceG;
+
+            // Time delay
             float _TimeDelay;
 
             v2f vert (appdata v)
@@ -79,31 +113,31 @@ Shader "Unlit/RayMarchingTestPhong"
             {
                 //float distance = pythaDistance(position);
                 float distanceSphere1 = length(float3(length(position.x + 1.0 / ObjectScale().x),
-                        position.y + 0.4 / ObjectScale().y + (_Bounce * sin(_Time + _TimeDelay).y) / ObjectScale().y,
+                        position.y + 0.4 / ObjectScale().y + (_BounceA * sin(_Time + _TimeDelay).y) / ObjectScale().y,
                         position.z)
                     ) - 1.1 / ObjectScale(); //Sphere
                 float distanceSphere2 = length(float3(length(position.x - 0.5 / ObjectScale().x),
-                        position.y + 0.5 / ObjectScale().y + (_Bounce * sin(_Time + _TimeDelay).y) / ObjectScale().y,
+                        position.y + 0.5 / ObjectScale().y + (_BounceB * sin(_Time + _TimeDelay).y) / ObjectScale().y,
                         position.z)
                     ) - 1 / ObjectScale(); //Sphere
                 float distanceSphere3 = length(float3(length(position.x - 1.8 / ObjectScale().x),
-                        position.y + 0.5 / ObjectScale().y + (_Bounce * sin(_Time + _TimeDelay).y) / ObjectScale().y,
+                        position.y + 0.5 / ObjectScale().y + (_BounceC * sin(_Time + _TimeDelay).y) / ObjectScale().y,
                         position.z)
                     ) - 0.6 / ObjectScale(); //Sphere
                 float distanceSphere4 = length(float3(length(position.x + 2.2 / ObjectScale().x),
-                        position.y + 0.5 / ObjectScale().y + (_Bounce * sin(_Time + _TimeDelay).y) / ObjectScale().y,
+                        position.y + 0.5 / ObjectScale().y + (_BounceD * sin(_Time + _TimeDelay).y) / ObjectScale().y,
                         position.z)
                     ) - 1 / ObjectScale(); //Sphere
                 float distanceSphere5 = length(float3(length(position.x - 1.0 / ObjectScale().x),
-                        position.y - 0.5  / ObjectScale().y + (_Bounce * sin(_Time + _TimeDelay).y) / ObjectScale().y,
+                        position.y - 0.5  / ObjectScale().y + (_BounceE * sin(_Time + _TimeDelay).y) / ObjectScale().y,
                         position.z)
                     ) - .6 / ObjectScale(); //Sphere
                 float distanceSphere6 = length(float3(length(position.x + 1.5 / ObjectScale().x),
-                        position.y - 0.75 / ObjectScale().y + (_Bounce * sin(_Time + _TimeDelay).y) / ObjectScale().y,
+                        position.y - 0.75 / ObjectScale().y + (_BounceF * sin(_Time + _TimeDelay).y) / ObjectScale().y,
                         position.z)
                     ) - .85 / ObjectScale(); //Sphere
                 float distanceSphere7 = length(float3(length(position.x + 0.2 / ObjectScale().x),
-                        position.y - 0.75 / ObjectScale().y + (_Bounce * sin(_Time + _TimeDelay).y) / ObjectScale().y,
+                        position.y - 0.75 / ObjectScale().y + (_BounceG * sin(_Time + _TimeDelay).y) / ObjectScale().y,
                         position.z)
                     ) - 0.45 / ObjectScale() * 1.5; //Sphere
                 //float distanceSphere2 = length(float2(length(position.xz) - .5, position.y)) - .1; //Torus   
@@ -162,6 +196,12 @@ Shader "Unlit/RayMarchingTestPhong"
                     //float4 NSLP = mul(unity_WorldToObject,  _WorldSpaceLightPos0); //NormalSpaceLightPos
                     float3 V = normalize(_WorldSpaceCameraPos - P);
                     float3 L;
+                    // Initializing _Alpha
+                    //_Alpha = 0;
+                    // Initializing isDay
+                    isDay = 1;
+                    
+
                     if(_WorldSpaceLightPos0.w == 0)
                     {
                         //Directional
@@ -172,9 +212,40 @@ Shader "Unlit/RayMarchingTestPhong"
                         //Point
                         L = normalize(_WorldSpaceLightPos0.xyz - P);
                     }
+                    // Seeing value of L change with time
+                    //buffer[0] = float4(L, 1);
+
+                    if (L.y < 0 && isTriggerable == 1)  // When L.y hits negative toggle isDay to be positive or negative
+                    {   // Setting isDay to positive
+                        isDay = isDay * -1;
+                        isTriggerable = 0;
+                        //Shader.SetGlobalFloat("_isDay", (_isDay * -1));
+                    }
+                    // When in between values and daytime time decrease alpha
+                    if ((L.y >= 0.30 || L.y <= 0.864) && (isDay >= 0))
+                    {
+                        _Alpha -= 0;
+                    }
+                    // When in between values and night time increase alpha
+                    // isDay is positive and should have higher alpha 
+                    else if ((L.y >= 0.30 || L.y <= 0.864) && (isDay <= 0)) 
+                    {
+                        _Alpha += 0.3;
+                        isTriggerable = 1; 
+                    } 
+                    
+                    // Debug lines
+                    // Seeing L.y change over time
+                    //buffer[0] = float4(L,1);
+                    //buffer[0] = float4(isDay, 0, 0, 1);
+                    // Seeing isDay change over time
+                    //buffer[0] = float4(isDay, 0, 0, 1);
+                    // Seeing _Alpha change with time
+                    //buffer[0] = _Alpha;
+
                     float3 R = reflect(-L,N);
                     float3 H = normalize(L+V);
-                    float4 Diffuse = _LightColor0 * tex * max(0,dot(N,L));
+                    float4 Diffuse = _LightColor0 * tex * max(0,dot(N,L)) + _Alpha;
                     //col.rgb = tex;
                     col = Diffuse;
                 } else {
